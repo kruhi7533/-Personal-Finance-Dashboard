@@ -1,0 +1,70 @@
+﻿npm : npm ERR! code 
+ERESOLVE
+At line:1 char:1
++ npm install > 
+install.log 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo         
+     : NotSpecified: (npm  
+   ERR! code ERESOLVE:St   
+ ring) [], RemoteExcept    
+ion
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+npm ERR! ERESOLVE unable 
+to resolve dependency tree
+npm ERR! 
+npm ERR! While resolving: 
+zorvyn-assignment@0.0.0
+npm ERR! Found: vite@8.0.5
+npm ERR! node_modules/vite
+npm ERR!   dev 
+vite@"^8.0.5" from the 
+root project
+npm ERR!   peer vite@"*" 
+from 
+@vitejs/devtools@0.1.13
+npm ERR!   node_modules/@vi
+tejs/devtools
+npm ERR!     peerOptional 
+@vitejs/devtools@"^0.1.0" 
+from vite@8.0.5
+npm ERR! 
+npm ERR! Could not resolve 
+dependency:
+npm ERR! peer vite@"^4.2.0 
+|| ^5.0.0 || ^6.0.0 || 
+^7.0.0" from 
+@vitejs/plugin-react@4.7.0
+npm ERR! node_modules/@vite
+js/plugin-react
+npm ERR!   dev @vitejs/plug
+in-react@"^4.3.1" from the 
+root project
+npm ERR! 
+npm ERR! Fix the upstream 
+dependency conflict, or 
+retry
+npm ERR! this command with 
+--force or 
+--legacy-peer-deps
+npm ERR! to accept an 
+incorrect (and potentially 
+broken) dependency 
+resolution.
+npm ERR! 
+npm ERR! 
+npm ERR! For a full report 
+see:
+npm ERR! C:\Users\HP\AppDat
+a\Local\npm-cache\_logs\202
+6-04-06T12_52_22_078Z-ereso
+lve-report.txt
+
+npm ERR! A complete log of 
+this run can be found in: C
+:\Users\HP\AppData\Local\np
+m-cache\_logs\2026-04-06T12
+_52_22_078Z-debug-0.log

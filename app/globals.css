@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-primary: #a3e635;
+    --surface-base: #f7f9fb;
+    --surface-sidebar: #ffffff;
+    --surface-card: #ffffff;
+    --surface-border: #e8eff3;
+    --text-primary: #2a3439;
+    --text-secondary: #566166;
+  }
+
+  .dark {
+    --surface-base: #0a0f1e;
+    --surface-sidebar: #0d1117;
+    --surface-card: #141b2d;
+    --surface-border: #1e293b;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+  }
+
+  body {
+    @apply bg-[var(--surface-base)] text-[var(--text-secondary)] font-sans antialiased transition-colors duration-300;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-[var(--text-primary)];
+    font-family: 'Manrope', 'Inter', sans-serif;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-slate-400 dark:bg-slate-800 rounded-full hover:bg-slate-500 dark:hover:bg-slate-700 transition-colors; }
+}
+
+@media print {
+  .no-print { display: none !important; }
+  aside, header, .floating-btn { display: none !important; }
+  main { margin: 0 !important; padding: 0 !important; }
+  .lg\:ml-64 { margin-left: 0 !important; }
+  .card, div[class*="bg-[#141b2d]"] {
+    break-inside: avoid;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: none !important;
+    background: white !important;
+    color: black !important;
+  }
+  canvas { max-width: 100% !important; height: auto !important; }
+}
+
+@layer components {
+  .card { @apply bg-[var(--surface-card)] border border-[var(--surface-border)]/20 rounded-2xl p-6 shadow-2xl; }
+  .font-display { font-family: 'Manrope', 'Inter', sans-serif; }
+  .gradient-text { @apply bg-gradient-to-br from-white to-slate-400 bg-clip-text text-transparent; }
+  .brand-text { @apply bg-gradient-to-r from-[#a3e635] to-[#bef264] bg-clip-text text-transparent; }
+
+  .btn-primary {
+    @apply bg-[#a3e635] hover:bg-[#bef264] text-[#0a0f1e] font-bold px-6 py-3
+           rounded-2xl transition-all duration-300 active:scale-[0.98]
+           shadow-[0_8px_24px_rgba(163,230,53,0.2)] flex items-center justify-center gap-2;
+  }
+
+  .btn-ghost {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400
+           transition-all duration-200 hover:bg-white/5 hover:text-white;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-3.5 rounded-xl text-slate-400
+           transition-all duration-200 hover:text-white;
+  }
+
+  .nav-link.active { @apply bg-white/5 text-[#a3e635] font-semibold; }
+
+  .badge-lime {
+    @apply bg-[#a3e635]/10 text-[#a3e635] border border-[#a3e635]/20 text-[10px] font-bold px-2 py-1 rounded-lg uppercase tracking-wider;
+  }
+}
