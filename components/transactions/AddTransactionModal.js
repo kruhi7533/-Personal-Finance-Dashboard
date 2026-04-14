@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useTransactions } from '../../context/TransactionContext';
 import { CATEGORY_LIST, getCategoryByKey } from '../../lib/categories';
+import toast from 'react-hot-toast';
 
 export default function AddTransactionModal({ initial, onSave, onClose }) {
   const { addTransaction, editTransaction } = useTransactions();
@@ -44,7 +45,38 @@ export default function AddTransactionModal({ initial, onSave, onClose }) {
     e.preventDefault();
     setSaving(true);
     try {
-      const finalData = { ...formData, amount: parseFloat(formData.amount) || 0 };
+      const amount = parseFloat(formData.amount) || 0;
+      const finalData = { ...formData, amount };
+
+      // Large Transaction Alert Logic
+      const savedNotifications = localStorage.getItem('finflow-notifications');
+      const notifications = savedNotifications ? JSON.parse(savedNotifications) : { largeTransaction: false };
+      
+      if (notifications.largeTransaction && amount >= 50000) {
+        toast((t) => (
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 text-red-400 font-black uppercase tracking-widest text-[10px]">
+              <div className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+              High Value Transaction Detected
+            </div>
+            <p className="text-sm text-white font-medium">
+              You are recording a transaction of <span className="text-[#a3e635] font-black">₹{amount.toLocaleString()}</span>. 
+              This exceeds your safety threshold.
+            </p>
+          </div>
+        ), {
+          duration: 6000,
+          position: 'top-right',
+          style: {
+            background: '#0f172a',
+            border: '1px solid rgba(248, 113, 113, 0.2)',
+            padding: '20px',
+            borderRadius: '24px',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+          }
+        });
+      }
+
       if (initial) {
         await editTransaction(initial._id || initial.id, finalData);
       } else {
