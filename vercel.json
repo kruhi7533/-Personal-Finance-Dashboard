@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://personal-finance-dashboard-2jkx.onrender.com/api/$1"
+    }
+  ]
+}
