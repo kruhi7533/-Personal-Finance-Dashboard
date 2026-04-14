@@ -1,117 +1,114 @@
-# FinFlow — Full-Stack Personal Finance Dashboard with RBAC
+# 🌊 FinFlow — Premium Full-Stack Finance Ecosystem
 
-FinFlow is a premium, high-fidelity personal finance management platform built with the **MERN (Next.js, Express, React, Node, MongoDB)** stack. It provides deep insights into individual wealth trends, spending patterns, and cash flow analysis, all secured by a robust **Role-Based Access Control (RBAC)** system.
+FinFlow is a high-fidelity personal finance management platform engineered with the **MERN (Next.js, Express, React, Node, MongoDB)** stack. It offers an obsidian-dark, data-rich environment for tracking wealth, analyzing cash flow, and managing financial health with high precision.
 
-The application features a sleek "Obsidian" dark aesthetic with lime-green brand accents, optimized for both functionality and visual excellence.
-
----
-
-## 🎯 Project Overview
-FinFlow is a complete full-stack solution for personal finance, focusing on three core pillars:
-1.  **Visual Clarity:** Advanced charts and metrics for instantaneous financial health assessments.
-2.  **Data Ledger:** A high-precision transaction history with advanced filtering, sorting, and pagination.
-3.  **Secure RBAC:** A server-enforced permission system distinguishing between Admin and User roles.
-4.  **Persistent Storage:** Real-time data synchronization with MongoDB.
+The platform is fortified with **Role-Based Access Control (RBAC)**, ensuring a secure and specialized experience for both administrators and personal users.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Key Features
 
-### Frontend
-- **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Data Visualization:** [Chart.js](https://www.chartjs.org/) & [React Chartjs 2](https://react-chartjs-2.js.org/)
-- **State Management:** React Context API (Auth, Transactions, Theme)
-- **Icons:** [Lucide-React](https://lucide.dev/)
-
-### Backend
-- **Runtime:** [Node.js](https://nodejs.org/)
-- **Framework:** [Express.js](https://expressjs.com/)
-- **Database:** [MongoDB](https://www.mongodb.com/) with [Mongoose](https://mongoosejs.com/)
-- **Authentication:** [JWT (JSON Web Tokens)](https://jwt.io/)
-- **Security:** [Bcryptjs](https://www.npmjs.com/package/bcryptjs) for password hashing
+- **Dynamic Dashboard:** Real-time visualization of Total Balance, Income, Expenses, and Savings Rate.
+- **Intelligent Insights:** Spending pattern analysis with interactive Chart.js visualizations.
+- **Transaction Ledger:** Advanced sorting, filtering, and global search across financial histories.
+- **RBAC Security:** Separate entry points and permissions for Admins and Regular Users.
+- **PDF & CSV Export:** Generate professional financial reports on demand.
+- **Admin Panel:** Specialized view for platform-wide metrics and user management.
 
 ---
 
-## 📂 Folder Structure
+## 🛠️ Technology Stack
+
+### Frontend (Next.js 14 App Router)
+- **Framework:** React 18, Next.js 14
+- **Styling:** Tailwind CSS (Modern Dark Theme)
+- **Charts:** Chart.js with React-Chartjs-2
+- **State:** React Context API (Auth, Theme, Transactions)
+- **Icons:** Lucide-React
+
+### Backend (Node.js & Express)
+- **Database:** MongoDB with Mongoose ODM
+- **Auth:** JWT (JSON Web Tokens) with HttpOnly logic
+- **Security:** BcryptJS for robust password hashing
+- **Middleware:** Custom RBAC & Auth guards
+
+---
+
+## 📂 Project Architecture
+
 ```text
 .
-├── app/                # Next.js App Router pages and layouts
-├── components/         # Reusable UI components (Sidebar, Topbar, Modals)
-├── context/            # Auth, Transaction, and Theme Contexts
-├── lib/                # Shared utilities (API client, formatters, exports)
-├── server/             # Express.js Backend
-│   ├── config/         # Database configuration
-│   ├── controllers/    # API logic handlers
-│   ├── middleware/     # Auth and RBAC guards
-│   ├── models/         # Mongoose schemas (User, Transaction)
-│   ├── routes/         # API endpoint definitions
-│   └── seed.js         # Database initialization script
-└── public/             # Static assets
+├── app/                # Next.js App Router (Frontend Pages & Layouts)
+├── components/         # Reusable UI components (Modals, Charts, Sidebar)
+├── context/            # Global State (AuthContext, TransactionContext)
+├── lib/                # Shared Utilities (API client, Formatters)
+├── server/             # Express Backend API
+│   ├── config/         # MongoDB Connection logic
+│   ├── controllers/    # Route handler logic
+│   ├── models/         # Database Schemas (User, Transaction)
+│   ├── routes/         # API Endpoint definitions
+│   └── seed.js         # Initial Database Seeder script
+└── tailwind.config.js  # Global Styling Configuration
 ```
 
 ---
 
-## 🏗️ Setup Instructions
+## ⚙️ Setup & Installation
 
 ### 1. Prerequisites
-- [Node.js](https://nodejs.org/) installed.
-- [MongoDB](https://www.mongodb.com/try/download/community) running locally on `mongodb://localhost:27017`.
+- **Node.js:** v18+ recommended
+- **MongoDB:** Ensure MongoDB is running locally (typically `mongodb://localhost:27017`)
 
-### 2. Backend Setup
+### 2. Backend Configuration
+Navigate to the `server` folder and set up your environment:
 ```bash
 cd server
 npm install
-npm run seed     # IMPORTANT: Creates the initial admin/user accounts
-npm start        # Starts server on http://localhost:5000
+```
+Create a `.env` file in the `server` directory:
+```env
+PORT=5001
+MONGO_URI=mongodb://localhost:27017/finflow
+JWT_SECRET=your_secure_secret_key
 ```
 
-### 3. Frontend Setup
+### 3. Database Seeding
+Initialize the database with demo accounts:
 ```bash
-# In the root directory
-npm install
-npm run dev      # Starts Next.js on http://localhost:3000
+node seed.js
 ```
 
----
+### 4. Running the Application
+Open two terminal windows:
 
-## 🛡️ Role-Based Access Control (RBAC)
+**Terminal 1 (Backend):**
+```bash
+cd server
+npm run dev
+```
 
-FinFlow implements a hierarchical permission system:
-
-| Feature | Admin | User |
-|---------|:---:|:---:|
-| View Personal Dashboard | ✅ | ✅ |
-| Manage Own Transactions | ✅ | ✅ |
-| View All Platform Transactions | ✅ | ❌ |
-| Manage All User Transactions | ✅ | ❌ |
-| Admin Panel (Site Metrics) | ✅ | ❌ |
-| User Management (Promote/Delete) | ✅ | ❌ |
-
----
-
-## 🔑 Demo Credentials
-
-After running `npm run seed`, use these accounts to explore the RBAC features:
-
-### 🛡️ Admin Account
-- **Email:** `admin@finflow.com`
-- **Password:** `admin123`
-
-### 👤 Regular User
-- **Email:** `sakshi@finflow.com`
-- **Password:** `user123`
+**Terminal 2 (Frontend):**
+```bash
+# In the project root
+npm install
+npm run dev
+```
+The application will be accessible at [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## ✨ Features List
+## 🛡️ RBAC & Demo Access
 
-- **Unified Dashboard:** Real-time metrics for Balance, Income, Expense, and Savings Rate.
-- **Transaction Ledger:** Advanced filtering, global search, and pagination.
-- **PDF Export:** High-fidelity financial reports generated on the fly.
-- **Financial Insights:** AI-powered suggestions based on spending patterns.
-- **Platform Analytics:** (Admin Only) High-level overview of total users and site-wide cash flow.
-- **User Management:** (Admin Only) Secure tools for managing the user base.
+Use the following credentials after running the seeder:
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin@finflow.com` | `admin123` |
+| **User** | `sakshi@finflow.com` | `user123` |
+
+### Permission Matrix
+- **Users:** Can manage own transactions, view personal insights, and export reports.
+- **Admins:** Full CRUD on users, platform-wide transaction oversight, and global financial metrics.
 
 ---
-*Developed as a premium full-stack FinFlow Design Overhaul.*
+*Developed with a focus on visual excellence and premium user experience.*
